@@ -102,3 +102,8 @@ override_dh_makeshlibs:
 
 %:
 	dh $@ --parallel
+
+gen-debian-copyright:
+	cp debian/copyright.header debian/copyright
+	sed -r -e 's/^$$/./' -e 's/^[ ]*(.*)$$/    \1/' LICENSE >> debian/copyright
+	cat debian/copyright.footer >> debian/copyright
