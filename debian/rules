@@ -101,4 +101,4 @@ override_dh_makeshlibs:
 	dh_makeshlibs -n
 
 %:
-	dh $@
+	dh $@ --parallel
