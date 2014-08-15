@@ -97,5 +97,8 @@ override_dh_installinit:
 	dh_installinit --package=bareos-storage    --name=bareos-sd  --no-start
 	dh_installinit --package=bareos-filedaemon --name=bareos-fd
 
+override_dh_makeshlibs:
+	dh_makeshlibs -n
+
 %:
 	dh $@
