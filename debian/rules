@@ -90,7 +90,7 @@ override_dh_strip:
 
 override_dh_install:
 	chrpath -d $(CURDIR)/debian/tmp/usr/lib/bareos/backends/*
-	dh_auto_install
+	dh_install
 
 override_dh_installinit:
 	dh_installinit --package=bareos-director   --name=bareos-dir --no-start
