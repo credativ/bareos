@@ -72,7 +72,8 @@ override_dh_auto_configure:
   --with-mon-sd-password="XXX_REPLACE_WITH_STORAGE_MONITOR_PASSWORD_XXX" \
   --with-basename="XXX_REPLACE_WITH_LOCAL_HOSTNAME_XXX" \
   --with-hostname="XXX_REPLACE_WITH_LOCAL_HOSTNAME_XXX" \
-  --enable-includes
+  --enable-includes \
+  --disable-rpath
 
 #  --docdir="\$(_docdir)/bareos" \
 #  --htmldir="\$(_docdir)/bareos/html" \
@@ -86,6 +87,10 @@ override_dh_fixperms:
 
 override_dh_strip:
 	dh_strip --dbg-package=bareos-dbg
+
+override_dh_install:
+	chrpath -d $(CURDIR)/debian/tmp/usr/lib/bareos/backends/*
+	dh_auto_install
 
 override_dh_installinit:
 	dh_installinit --package=bareos-director   --name=bareos-dir --no-start
